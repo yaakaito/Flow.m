@@ -43,12 +43,10 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 }
 
 - (void)pass {
-
     [self.passes increment];
     if ([self.passes isReached]) {
         self.completionBlock(nil, self.arguments);
     }
-
 }
 
 - (void)passWithValue:(id)value {
