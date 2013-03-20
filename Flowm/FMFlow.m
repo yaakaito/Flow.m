@@ -11,7 +11,8 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 
 @interface FMFlow ()
 @property (nonatomic, copy) FlowCompletionBlock completionBlock;
-@property (nonatomic) NSUInteger waits;
+@property (nonatomic) NSInteger waits;
+@property (nonatomic) NSInteger misses;
 @property (nonatomic, strong) FMArguments *arguments;
 @end
 
@@ -19,11 +20,11 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 
 }
 
-+ (instancetype)flowWithWaits:(NSUInteger)waits completionBlock:(FlowCompletionBlock)completionBlock {
++ (instancetype)flowWithWaits:(NSInteger)waits completionBlock:(FlowCompletionBlock)completionBlock {
     return [[self alloc] initWithWait:waits completionBlock:completionBlock];
 }
 
-- (instancetype)initWithWait:(NSUInteger)wait completionBlock:(FlowCompletionBlock)completionBlock {
+- (instancetype)initWithWait:(NSInteger)wait completionBlock:(FlowCompletionBlock)completionBlock {
     self = [super init];
 
     if (!self) {
@@ -31,6 +32,7 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
     }
 
     self.waits = wait;
+    self.misses = 0;
     self.completionBlock = completionBlock;
     self.arguments = [FMArguments arguments];
 
@@ -56,7 +58,7 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
     [self pass];
 }
 
-- (void)extend:(NSUInteger)waits {
+- (void)extend:(NSInteger)waits {
     @synchronized (self) {
         self.waits += waits;
     }
@@ -69,7 +71,18 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 }
 
 - (void)miss {
-    self.completionBlock([self _failureError], self.arguments);
+    @synchronized (self) {
+        self.misses--;
+        if (self.misses < 0) {
+            self.completionBlock([self _failureError], self.arguments);
+        }
+    }
+}
+
+- (void)missable:(NSInteger)misses {
+    @synchronized (self) {
+        self.misses = misses;
+    }
 }
 
 - (NSError *)_exitErrorWithUserInfo:(NSDictionary *)userInfo {

@@ -22,5 +22,6 @@ typedef void(^FlowCompletionBlock)(NSError *error, FMArguments *arguments);
 - (void)passWithValue:(id)value forKey:(NSString *)key;
 - (void)extend:(NSUInteger)waits;
 - (void)miss;
+- (void)missable:(NSUInteger)misses;
 - (void)exit:(NSDictionary *)userInfo;
 @end
