@@ -6,8 +6,9 @@
 
 
 #import <Foundation/Foundation.h>
+#import "FMArguments.h"
 
-typedef void(^FlowCompletionBlock)(NSError *error, NSArray *arguments);
+typedef void(^FlowCompletionBlock)(NSError *error, FMArguments *arguments);
 
 @interface FMFlow : NSObject
 + (instancetype)flowWithWaits:(NSUInteger)waits completionBlock:(FlowCompletionBlock)completionBlock;
