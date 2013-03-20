@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		0BEBB0BE64924979B49EBE5C /* libPods-FlowmTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD3FED2FF014BBE985BD691 /* libPods-FlowmTests.a */; };
 		B9370A5516F9E3E800B67FDB /* FMFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = D04241F0E00668B648737A1F /* FMFlow.m */; };
-		D04240B3414D16A4D844EEB8 /* Flowm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D04245FA28E56C81CA9E0467 /* Flowm.h */; };
 		D0424182A285E0C55D1B802A /* FMArgumentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D04245DBA263ED8D97B30CB4 /* FMArgumentsTests.m */; };
 		D04241C95AEBA029E376F16F /* FMCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D04247A8202449D14248B096 /* FMCounter.m */; };
 		D042421AAC261CE1F17319FF /* FMFlowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0424D5BAC0C6908F89150F7 /* FMFlowTests.m */; };
-		D042425C64F139D462B91F4F /* FlowmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0424D62F27F57D251BC0D11 /* FlowmTests.m */; };
 		D04242D74C7D4BC1723D6CB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0424E43AA2B80ADD84A2DA3 /* Foundation.framework */; };
 		D04244B2A6A968CA3EF588C7 /* FMCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D04247A8202449D14248B096 /* FMCounter.m */; };
 		D04244E543B7C30BC210148C /* FMFlow.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D0424A54041FE46F2486AFAD /* FMFlow.h */; };
@@ -26,7 +24,6 @@
 		D0424BA011BA298CF6BE138D /* FMArguments.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D04242809B222B5B2CE1EA12 /* FMArguments.h */; };
 		D0424C39A4173435B9D8A2DC /* FMCounter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D042438F2B752730E11853D3 /* FMCounter.h */; };
 		D0424D8110EFA6F9322988E5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D042436B22F9508EA4656DF9 /* SenTestingKit.framework */; };
-		D0424F1369F18FD4F3BE5C14 /* Flowm.m in Sources */ = {isa = PBXBuildFile; fileRef = D042465782A7D3897327CFB7 /* Flowm.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +43,6 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				D04240B3414D16A4D844EEB8 /* Flowm.h in CopyFiles */,
 				D04244E543B7C30BC210148C /* FMFlow.h in CopyFiles */,
 				D0424BA011BA298CF6BE138D /* FMArguments.h in CopyFiles */,
 				D0424C39A4173435B9D8A2DC /* FMCounter.h in CopyFiles */,
@@ -66,16 +62,12 @@
 		D04244BAEC84EF4F404E0FFB /* FMArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMArguments.m; sourceTree = "<group>"; };
 		D04244CC081AAA64BD646C42 /* FlowmTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlowmTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04245DBA263ED8D97B30CB4 /* FMArgumentsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMArgumentsTests.m; sourceTree = "<group>"; };
-		D04245FA28E56C81CA9E0467 /* Flowm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flowm.h; sourceTree = "<group>"; };
-		D042465782A7D3897327CFB7 /* Flowm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flowm.m; sourceTree = "<group>"; };
 		D042476DC25D253DABBA0F82 /* Flowm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flowm-Prefix.pch"; sourceTree = "<group>"; };
 		D04247A8202449D14248B096 /* FMCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMCounter.m; sourceTree = "<group>"; };
 		D0424A54041FE46F2486AFAD /* FMFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMFlow.h; sourceTree = "<group>"; };
 		D0424BD96345888A9E6D6BDD /* FlowmTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "FlowmTests-Info.plist"; sourceTree = "<group>"; };
 		D0424CCB661705F56A323E1D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D0424CDCDF0EAD9E42D09C20 /* FlowmTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowmTests.h; sourceTree = "<group>"; };
 		D0424D5BAC0C6908F89150F7 /* FMFlowTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMFlowTests.m; sourceTree = "<group>"; };
-		D0424D62F27F57D251BC0D11 /* FlowmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowmTests.m; sourceTree = "<group>"; };
 		D0424E43AA2B80ADD84A2DA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D0424F524E7ED12E898E3611 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,8 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				D0424A836C6143CBFD1E7FCB /* Supporting Files */,
-				D0424CDCDF0EAD9E42D09C20 /* FlowmTests.h */,
-				D0424D62F27F57D251BC0D11 /* FlowmTests.m */,
 				D0424D5BAC0C6908F89150F7 /* FMFlowTests.m */,
 				D04245DBA263ED8D97B30CB4 /* FMArgumentsTests.m */,
 			);
@@ -141,8 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				D0424A1941509115ACB4A1C7 /* Supporting Files */,
-				D04245FA28E56C81CA9E0467 /* Flowm.h */,
-				D042465782A7D3897327CFB7 /* Flowm.m */,
 				D04241F0E00668B648737A1F /* FMFlow.m */,
 				D0424A54041FE46F2486AFAD /* FMFlow.h */,
 				D04244BAEC84EF4F404E0FFB /* FMArguments.m */,
@@ -288,7 +276,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D042425C64F139D462B91F4F /* FlowmTests.m in Sources */,
 				D042421AAC261CE1F17319FF /* FMFlowTests.m in Sources */,
 				B9370A5516F9E3E800B67FDB /* FMFlow.m in Sources */,
 				D04248FC5CD8063237BC4EE5 /* FMArguments.m in Sources */,
@@ -301,7 +288,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0424F1369F18FD4F3BE5C14 /* Flowm.m in Sources */,
 				D042479ED7C33228B01BA669 /* FMFlow.m in Sources */,
 				D04247A8C0B59152B46EF471 /* FMArguments.m in Sources */,
 				D04244B2A6A968CA3EF588C7 /* FMCounter.m in Sources */,
