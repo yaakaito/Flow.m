@@ -11,9 +11,11 @@
 		B9370A5516F9E3E800B67FDB /* FMFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = D04241F0E00668B648737A1F /* FMFlow.m */; };
 		D04240B3414D16A4D844EEB8 /* Flowm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D04245FA28E56C81CA9E0467 /* Flowm.h */; };
 		D0424182A285E0C55D1B802A /* FMArgumentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D04245DBA263ED8D97B30CB4 /* FMArgumentsTests.m */; };
+		D04241C95AEBA029E376F16F /* FMCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D04247A8202449D14248B096 /* FMCounter.m */; };
 		D042421AAC261CE1F17319FF /* FMFlowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0424D5BAC0C6908F89150F7 /* FMFlowTests.m */; };
 		D042425C64F139D462B91F4F /* FlowmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0424D62F27F57D251BC0D11 /* FlowmTests.m */; };
 		D04242D74C7D4BC1723D6CB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0424E43AA2B80ADD84A2DA3 /* Foundation.framework */; };
+		D04244B2A6A968CA3EF588C7 /* FMCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D04247A8202449D14248B096 /* FMCounter.m */; };
 		D04244E543B7C30BC210148C /* FMFlow.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D0424A54041FE46F2486AFAD /* FMFlow.h */; };
 		D042459E81281E1972613D8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0424E43AA2B80ADD84A2DA3 /* Foundation.framework */; };
 		D0424661700C98F50A2351A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0424CCB661705F56A323E1D /* UIKit.framework */; };
@@ -22,6 +24,7 @@
 		D04248FC5CD8063237BC4EE5 /* FMArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = D04244BAEC84EF4F404E0FFB /* FMArguments.m */; };
 		D0424AB33ED6812D62B06CF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0424B3DC8ED85E22E459388 /* InfoPlist.strings */; };
 		D0424BA011BA298CF6BE138D /* FMArguments.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D04242809B222B5B2CE1EA12 /* FMArguments.h */; };
+		D0424C39A4173435B9D8A2DC /* FMCounter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D042438F2B752730E11853D3 /* FMCounter.h */; };
 		D0424D8110EFA6F9322988E5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D042436B22F9508EA4656DF9 /* SenTestingKit.framework */; };
 		D0424F1369F18FD4F3BE5C14 /* Flowm.m in Sources */ = {isa = PBXBuildFile; fileRef = D042465782A7D3897327CFB7 /* Flowm.m */; };
 /* End PBXBuildFile section */
@@ -46,6 +49,7 @@
 				D04240B3414D16A4D844EEB8 /* Flowm.h in CopyFiles */,
 				D04244E543B7C30BC210148C /* FMFlow.h in CopyFiles */,
 				D0424BA011BA298CF6BE138D /* FMArguments.h in CopyFiles */,
+				D0424C39A4173435B9D8A2DC /* FMCounter.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,12 +62,14 @@
 		D04241F0E00668B648737A1F /* FMFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMFlow.m; sourceTree = "<group>"; };
 		D04242809B222B5B2CE1EA12 /* FMArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMArguments.h; sourceTree = "<group>"; };
 		D042436B22F9508EA4656DF9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D042438F2B752730E11853D3 /* FMCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMCounter.h; sourceTree = "<group>"; };
 		D04244BAEC84EF4F404E0FFB /* FMArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMArguments.m; sourceTree = "<group>"; };
 		D04244CC081AAA64BD646C42 /* FlowmTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlowmTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04245DBA263ED8D97B30CB4 /* FMArgumentsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMArgumentsTests.m; sourceTree = "<group>"; };
 		D04245FA28E56C81CA9E0467 /* Flowm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flowm.h; sourceTree = "<group>"; };
 		D042465782A7D3897327CFB7 /* Flowm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flowm.m; sourceTree = "<group>"; };
 		D042476DC25D253DABBA0F82 /* Flowm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flowm-Prefix.pch"; sourceTree = "<group>"; };
+		D04247A8202449D14248B096 /* FMCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMCounter.m; sourceTree = "<group>"; };
 		D0424A54041FE46F2486AFAD /* FMFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMFlow.h; sourceTree = "<group>"; };
 		D0424BD96345888A9E6D6BDD /* FlowmTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "FlowmTests-Info.plist"; sourceTree = "<group>"; };
 		D0424CCB661705F56A323E1D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -141,6 +147,8 @@
 				D0424A54041FE46F2486AFAD /* FMFlow.h */,
 				D04244BAEC84EF4F404E0FFB /* FMArguments.m */,
 				D04242809B222B5B2CE1EA12 /* FMArguments.h */,
+				D04247A8202449D14248B096 /* FMCounter.m */,
+				D042438F2B752730E11853D3 /* FMCounter.h */,
 			);
 			path = Flowm;
 			sourceTree = "<group>";
@@ -285,6 +293,7 @@
 				B9370A5516F9E3E800B67FDB /* FMFlow.m in Sources */,
 				D04248FC5CD8063237BC4EE5 /* FMArguments.m in Sources */,
 				D0424182A285E0C55D1B802A /* FMArgumentsTests.m in Sources */,
+				D04241C95AEBA029E376F16F /* FMCounter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +304,7 @@
 				D0424F1369F18FD4F3BE5C14 /* Flowm.m in Sources */,
 				D042479ED7C33228B01BA669 /* FMFlow.m in Sources */,
 				D04247A8C0B59152B46EF471 /* FMArguments.m in Sources */,
+				D04244B2A6A968CA3EF588C7 /* FMCounter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

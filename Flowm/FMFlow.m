@@ -6,14 +6,14 @@
 
 
 #import "FMFlow.h"
+#import "FMCounter.h"
 
 static NSString *kFlowDomain = @"org.yaakaito.flow";
 
 @interface FMFlow ()
 @property (nonatomic, copy) FlowCompletionBlock completionBlock;
-@property (nonatomic) NSInteger waits;
-@property (nonatomic) NSInteger passes;
-@property (nonatomic) NSInteger misses;
+@property (nonatomic, strong) FMCounter *passes;
+@property (nonatomic, strong) FMCounter *misses;
 @property (nonatomic, strong) FMArguments *arguments;
 @end
 
@@ -25,16 +25,16 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
     return [[self alloc] initWithWait:waits completionBlock:completionBlock];
 }
 
-- (instancetype)initWithWait:(NSInteger)wait completionBlock:(FlowCompletionBlock)completionBlock {
+- (instancetype)initWithWait:(NSInteger)waits completionBlock:(FlowCompletionBlock)completionBlock {
     self = [super init];
 
     if (!self) {
         return nil;
     }
 
-    self.waits = wait;
-    self.passes = 0;
-    self.misses = 0;
+    self.passes = [[FMCounter alloc] init];
+    [self.passes updateDesire:waits];
+    self.misses = [[FMCounter alloc] init];
     self.completionBlock = completionBlock;
     self.arguments = [FMArguments arguments];
 
@@ -42,12 +42,12 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 }
 
 - (void)pass {
-    @synchronized (self) {
-        self.passes++;
-        if (self.passes == self.waits) {
-            self.completionBlock(nil, self.arguments);
-        }
+
+    [self.passes increment];
+    if ([self.passes isReached]) {
+        self.completionBlock(nil, self.arguments);
     }
+
 }
 
 - (void)passWithValue:(id)value {
@@ -61,9 +61,7 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 }
 
 - (void)extend:(NSInteger)waits {
-    @synchronized (self) {
-        self.waits += waits;
-    }
+    [self.passes updateDesire:self.passes.desire + waits];
 }
 
 - (NSError *)_failureError {
@@ -73,18 +71,14 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 }
 
 - (void)miss {
-    @synchronized (self) {
-        self.misses--;
-        if (self.misses < 0) {
-            self.completionBlock([self _failureError], self.arguments);
-        }
+    [self.misses increment];
+    if ([self.misses isOvered]) {
+        self.completionBlock([self _failureError], self.arguments);
     }
 }
 
 - (void)missable:(NSInteger)misses {
-    @synchronized (self) {
-        self.misses = misses;
-    }
+    [self.misses updateDesire:misses];
 }
 
 - (NSError *)_exitErrorWithUserInfo:(NSDictionary *)userInfo {
