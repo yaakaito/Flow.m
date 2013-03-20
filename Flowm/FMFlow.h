@@ -16,12 +16,12 @@ typedef enum {
 typedef void(^FlowCompletionBlock)(NSError *error, FMArguments *arguments);
 
 @interface FMFlow : NSObject
-+ (instancetype)flowWithWaits:(NSUInteger)waits completionBlock:(FlowCompletionBlock)completionBlock;
++ (instancetype)flowWithWaits:(NSInteger)waits completionBlock:(FlowCompletionBlock)completionBlock;
 - (instancetype)pass;
 - (instancetype)passWithValue:(id)value;
 - (instancetype)passWithValue:(id)value forKey:(NSString *)key;
-- (instancetype)extend:(NSUInteger)waits;
+- (instancetype)extend:(NSInteger)waits;
 - (instancetype)miss;
-- (instancetype)missable:(NSUInteger)misses;
+- (instancetype)missable:(NSInteger)misses;
 - (instancetype)exit:(NSDictionary *)userInfo;
 @end
