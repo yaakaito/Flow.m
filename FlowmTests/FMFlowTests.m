@@ -75,4 +75,18 @@
 
     STAssertThrows([asyncTest waitForTimeout:1], @"expected timeout");
 }
+
+- (void)performAfter2secondsWithFlow:(FMFlow *)aFlow {
+    [aFlow pass];
+}
+
+- (void)testPerformAfter2seconds {
+    FMFlow *flow = [FMFlow flowWithWait:1 completionBlock:^(NSError *error, NSArray *arguments) {
+        [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
+    }];
+
+    [self performSelector:@selector(performAfter2secondsWithFlow:) withObject:flow afterDelay:2];
+
+    [asyncTest waitForTimeout:5];
+}
 @end
