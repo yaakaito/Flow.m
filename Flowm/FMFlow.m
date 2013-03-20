@@ -33,10 +33,11 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
     }
 
     self.passes = [[FMCounter alloc] init];
-    [self.passes updateDesire:waits];
     self.misses = [[FMCounter alloc] init];
-    self.completionBlock = completionBlock;
     self.arguments = [FMArguments arguments];
+
+    self.completionBlock = completionBlock;
+    [self.passes updateDesire:waits];
 
     return self;
 }
