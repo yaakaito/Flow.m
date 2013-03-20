@@ -1,0 +1,14 @@
+
+PODS:
+- AsyncTestSupporter (0.1.0)
+- OCHamcrest (1.9)
+
+DEPENDENCIES:
+- AsyncTestSupporter
+- OCHamcrest
+
+SPEC CHECKSUMS:
+  AsyncTestSupporter: 56adc87af7f4c52ce27fa11e92d4f73bc7bb2383
+  OCHamcrest: f8393efd5a49d91879be573635d6183effacc0ab
+
+COCOAPODS: 0.16.4
