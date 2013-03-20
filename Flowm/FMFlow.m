@@ -42,25 +42,29 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
     return self;
 }
 
-- (void)pass {
+- (instancetype)pass {
     [self.passes increment];
     if ([self.passes isReached]) {
         self.completionBlock(nil, self.arguments);
     }
+    return self;
 }
 
-- (void)passWithValue:(id)value {
+- (instancetype)passWithValue:(id)value {
     [self.arguments addArgument:value];
     [self pass];
+    return self;
 }
 
-- (void)passWithValue:(id)value forKey:(NSString *)key {
+- (instancetype)passWithValue:(id)value forKey:(NSString *)key {
     [self.arguments addArgument:value withKey:key];
     [self pass];
+    return self;
 }
 
-- (void)extend:(NSInteger)waits {
+- (instancetype)extend:(NSInteger)waits {
     [self.passes updateDesire:self.passes.desire + waits];
+    return self;
 }
 
 - (NSError *)_failureError {
@@ -69,15 +73,17 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
                            userInfo:nil];
 }
 
-- (void)miss {
+- (instancetype)miss {
     [self.misses increment];
     if ([self.misses isOvered]) {
         self.completionBlock([self _failureError], self.arguments);
     }
+    return self;
 }
 
-- (void)missable:(NSInteger)misses {
+- (instancetype)missable:(NSInteger)misses {
     [self.misses updateDesire:misses];
+    return self;
 }
 
 - (NSError *)_exitErrorWithUserInfo:(NSDictionary *)userInfo {
@@ -86,8 +92,9 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
                            userInfo:userInfo];
 }
 
-- (void)exit:(NSDictionary *)userInfo {
+- (instancetype)exit:(NSDictionary *)userInfo {
     self.completionBlock([self _exitErrorWithUserInfo:userInfo], self.arguments);
+    return self;
 }
 
 @end

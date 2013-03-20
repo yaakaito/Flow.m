@@ -17,11 +17,11 @@ typedef void(^FlowCompletionBlock)(NSError *error, FMArguments *arguments);
 
 @interface FMFlow : NSObject
 + (instancetype)flowWithWaits:(NSUInteger)waits completionBlock:(FlowCompletionBlock)completionBlock;
-- (void)pass;
-- (void)passWithValue:(id)value;
-- (void)passWithValue:(id)value forKey:(NSString *)key;
-- (void)extend:(NSUInteger)waits;
-- (void)miss;
-- (void)missable:(NSUInteger)misses;
-- (void)exit:(NSDictionary *)userInfo;
+- (instancetype)pass;
+- (instancetype)passWithValue:(id)value;
+- (instancetype)passWithValue:(id)value forKey:(NSString *)key;
+- (instancetype)extend:(NSUInteger)waits;
+- (instancetype)miss;
+- (instancetype)missable:(NSUInteger)misses;
+- (instancetype)exit:(NSDictionary *)userInfo;
 @end

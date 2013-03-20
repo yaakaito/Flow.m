@@ -212,4 +212,19 @@
     [asyncTest waitForTimeout:5];
 }
 
+- (void)testMethodChains {
+    FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, FMArguments *arguments) {
+        [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
+    }];
+
+    [[flow extend:1] missable:1];
+
+    __weak FMFlow *that = flow;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[[[that pass] miss] passWithValue:@"A" forKey:@"a"] passWithValue:@"a"];
+    });
+
+    [asyncTest waitForTimeout:5];
+}
+
 @end
