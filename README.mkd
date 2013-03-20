@@ -4,7 +4,7 @@ Simple async processing with pass/miss.
 
  Inspired by flow.js. [Github](https://github.com/uupaa/flow.js) | [slideshare](http://www.slideshare.net/uupaa/flowjs)
 
- ## Usage 
+## Usage 
 
  Setup with cocoapods:
 
@@ -48,7 +48,7 @@ FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, FMArgum
 [flow pass];  // Flow!
 ```
 
-## arguments
+### arguments
 
 Completion blocks can receive arguments, its created by `passWithValue:` or `passWithValue:forKey:`.
 Can get argument by `key` or `index`.
