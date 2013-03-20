@@ -59,7 +59,6 @@ FMFlow *flow = [FMFlow flowWithWaits:2 completionBlock:^(NSError *error, FMArgum
     NSLog([arguments argumentAtIndex:0]); // HOGE
     NSLog([arguments argumentAtIndex:1]); // FUGA
     NSLog([arguments argumentForKey:@"fuga"]); // FUGA
-    [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
 }];
 
 [flow passWithValue:@"HOGE"];
