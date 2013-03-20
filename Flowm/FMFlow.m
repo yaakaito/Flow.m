@@ -12,6 +12,7 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 @interface FMFlow ()
 @property (nonatomic, copy) FlowCompletionBlock completionBlock;
 @property (nonatomic) NSInteger waits;
+@property (nonatomic) NSInteger passes;
 @property (nonatomic) NSInteger misses;
 @property (nonatomic, strong) FMArguments *arguments;
 @end
@@ -32,6 +33,7 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
     }
 
     self.waits = wait;
+    self.passes = 0;
     self.misses = 0;
     self.completionBlock = completionBlock;
     self.arguments = [FMArguments arguments];
@@ -41,8 +43,8 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 
 - (void)pass {
     @synchronized (self) {
-        self.waits--;
-        if (self.waits == 0) {
+        self.passes++;
+        if (self.passes == self.waits) {
             self.completionBlock(nil, self.arguments);
         }
     }
