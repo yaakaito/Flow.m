@@ -10,7 +10,7 @@
 static NSString *kFlowArgument = @"__flow_argument__";
 
 @interface FMArguments ()
-@property (atomic, strong) NSMutableArray *arguments;
+@property (nonatomic, strong) NSMutableArray *arguments;
 @end
 
 @implementation FMArguments
