@@ -84,4 +84,48 @@
 
     [asyncTest waitForTimeout:5];
 }
+
+- (void)testExtend {
+    FMFlow *flow = [FMFlow flowWithWait:1 completionBlock:^(NSError *error, NSArray *arguments) {
+        [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
+    }];
+
+    [flow extend:1];
+
+    __weak FMFlow *that = flow;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that pass];
+    });
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that pass];
+    });
+
+    [asyncTest waitForTimeout:5];
+}
+
+- (void)testExtend2times {
+    FMFlow *flow = [FMFlow flowWithWait:1 completionBlock:^(NSError *error, NSArray *arguments) {
+        [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
+    }];
+
+    [flow extend:1];
+
+    __weak FMFlow *that = flow;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that pass];
+    });
+
+    [flow extend:1];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that pass];
+    });
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that pass];
+    });
+
+    [asyncTest waitForTimeout:5];
+}
 @end

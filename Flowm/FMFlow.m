@@ -40,4 +40,8 @@
     }
 }
 
+- (void)extend:(NSUInteger)waits {
+    self.wait += waits;
+}
+
 @end
