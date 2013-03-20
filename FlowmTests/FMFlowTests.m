@@ -22,13 +22,8 @@
 
 
 - (void)setUp {
-    // Run before each test method
     asyncTest = [[AsyncTestSupporter alloc] init];
     [asyncTest prepare];
-}
-
-- (void)tearDown {
-    // Run after each test method
 }
 
 - (void)testInitializeAndPass {
