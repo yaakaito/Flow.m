@@ -62,14 +62,24 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
     }
 }
 
-- (NSError *)_failureError:(NSDictionary *)userInfo {
+- (NSError *)_failureError {
     return [NSError errorWithDomain:kFlowDomain
                                code:kFMErrorCodeFailure
-                           userInfo:userInfo];
+                           userInfo:nil];
 }
 
 - (void)miss {
-    self.completionBlock([self _failureError:nil], self.arguments);
+    self.completionBlock([self _failureError], self.arguments);
+}
+
+- (NSError *)_exitErrorWithUserInfo:(NSDictionary *)userInfo {
+    return [NSError errorWithDomain:kFlowDomain
+                               code:kFMErrorCodeExit
+                           userInfo:userInfo];
+}
+
+- (void)exit:(NSDictionary *)userInfo {
+    self.completionBlock([self _exitErrorWithUserInfo:userInfo], self.arguments);
 }
 
 @end

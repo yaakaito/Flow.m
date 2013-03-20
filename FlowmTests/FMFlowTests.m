@@ -173,4 +173,27 @@
     [asyncTest waitForTimeout:5];
 }
 
+
+- (void)testExit {
+
+    NSDictionary *userInfo = @{
+            @"hoge" : @"HOGE"
+    };
+
+    FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, FMArguments *arguments) {
+        assertThat(error, notNilValue());
+        assertThat([error domain], equalTo(@"org.yaakaito.flow"));
+        assertThatInteger([error code], equalToInteger(kFMErrorCodeExit));
+        assertThat([error userInfo], equalTo(userInfo));
+        [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
+    }];
+
+    __weak FMFlow *that = flow;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that exit:userInfo];
+    });
+
+    [asyncTest waitForTimeout:5];
+}
+
 @end

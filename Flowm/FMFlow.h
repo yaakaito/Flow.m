@@ -9,7 +9,8 @@
 #import "FMArguments.h"
 
 typedef enum {
-    kFMErrorCodeFailure = -999
+    kFMErrorCodeFailure = -999,
+    kFMErrorCodeExit    = -998
 } FMErrorCode;
 
 typedef void(^FlowCompletionBlock)(NSError *error, FMArguments *arguments);
@@ -21,4 +22,5 @@ typedef void(^FlowCompletionBlock)(NSError *error, FMArguments *arguments);
 - (void)passWithValue:(id)value forKey:(NSString *)key;
 - (void)extend:(NSUInteger)waits;
 - (void)miss;
+- (void)exit:(NSDictionary *)userInfo;
 @end
