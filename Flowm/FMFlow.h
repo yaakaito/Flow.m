@@ -8,6 +8,10 @@
 #import <Foundation/Foundation.h>
 #import "FMArguments.h"
 
+typedef enum {
+    kFMErrorCodeFailure = -999
+} FMErrorCode;
+
 typedef void(^FlowCompletionBlock)(NSError *error, FMArguments *arguments);
 
 @interface FMFlow : NSObject
@@ -16,4 +20,5 @@ typedef void(^FlowCompletionBlock)(NSError *error, FMArguments *arguments);
 - (void)passWithValue:(id)value;
 - (void)passWithValue:(id)value forKey:(NSString *)key;
 - (void)extend:(NSUInteger)waits;
+- (void)miss;
 @end

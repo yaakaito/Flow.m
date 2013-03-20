@@ -7,6 +7,8 @@
 
 #import "FMFlow.h"
 
+static NSString *kFlowDomain = @"org.yaakaito.flow";
+
 @interface FMFlow ()
 @property (nonatomic, copy) FlowCompletionBlock completionBlock;
 @property (nonatomic) NSUInteger waits;
@@ -58,6 +60,16 @@
     @synchronized (self) {
         self.waits += waits;
     }
+}
+
+- (NSError *)_failureError:(NSDictionary *)userInfo {
+    return [NSError errorWithDomain:kFlowDomain
+                               code:kFMErrorCodeFailure
+                           userInfo:userInfo];
+}
+
+- (void)miss {
+    self.completionBlock([self _failureError:nil], self.arguments);
 }
 
 @end
