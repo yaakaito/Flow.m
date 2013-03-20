@@ -13,5 +13,7 @@ typedef void(^FlowCompletionBlock)(NSError *error, FMArguments *arguments);
 @interface FMFlow : NSObject
 + (instancetype)flowWithWaits:(NSUInteger)waits completionBlock:(FlowCompletionBlock)completionBlock;
 - (void)pass;
+- (void)passWithValue:(id)value;
+- (void)passWithValue:(id)value forKey:(NSString *)key;
 - (void)extend:(NSUInteger)waits;
 @end

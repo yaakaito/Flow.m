@@ -10,6 +10,7 @@
 @interface FMFlow ()
 @property (nonatomic, copy) FlowCompletionBlock completionBlock;
 @property (atomic) NSUInteger waits;
+@property (atomic, strong) FMArguments *arguments;
 @end
 
 @implementation FMFlow {
@@ -29,6 +30,7 @@
 
     self.waits = wait;
     self.completionBlock = completionBlock;
+    self.arguments = [FMArguments arguments];
 
     return self;
 }
@@ -36,8 +38,18 @@
 - (void)pass {
     self.waits--;
     if (self.waits == 0) {
-        self.completionBlock(nil, nil);
+        self.completionBlock(nil, self.arguments);
     }
+}
+
+- (void)passWithValue:(id)value {
+    [self.arguments addArgument:value];
+    [self pass];
+}
+
+- (void)passWithValue:(id)value forKey:(NSString *)key {
+    [self.arguments addArgument:value withKey:key];
+    [self pass];
 }
 
 - (void)extend:(NSUInteger)waits {

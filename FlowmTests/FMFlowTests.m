@@ -134,5 +134,26 @@
     [asyncTest waitForTimeout:5];
 }
 
+- (void)testArguments {
+
+    FMFlow *flow = [FMFlow flowWithWaits:2 completionBlock:^(NSError *error, FMArguments *arguments) {
+
+        assertThat([arguments argumentAtIndex:0], equalTo(@"HOGE"));
+        assertThat([arguments argumentAtIndex:1], equalTo(@"FUGA"));
+        assertThat([arguments argumentForKey:@"fuga"], equalTo(@"FUGA"));
+        [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
+    }];
+
+
+    __weak FMFlow *that = flow;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that passWithValue:@"HOGE"];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [that passWithValue:@"FUGA" forKey:@"fuga"];
+        });
+    });
+
+    [asyncTest waitForTimeout:5];
+}
 
 @end
