@@ -28,7 +28,7 @@
 
 - (void)testInitializeAndPass {
 
-    FMFlow *flow = [FMFlow flowWithWait:1 completionBlock:^(NSError *error, NSArray *arguments) {
+    FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, NSArray *arguments) {
         [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
     }];
 
@@ -42,7 +42,7 @@
 
 - (void)testWait2times {
 
-    FMFlow *flow = [FMFlow flowWithWait:2 completionBlock:^(NSError *error, NSArray *arguments) {
+    FMFlow *flow = [FMFlow flowWithWaits:2 completionBlock:^(NSError *error, NSArray *arguments) {
         [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
     }];
 
@@ -59,7 +59,7 @@
 }
 
 - (void)testBeShortPasses {
-    FMFlow *flow = [FMFlow flowWithWait:2 completionBlock:^(NSError *error, NSArray *arguments) {
+    FMFlow *flow = [FMFlow flowWithWaits:2 completionBlock:^(NSError *error, NSArray *arguments) {
         [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
     }];
 
@@ -76,7 +76,7 @@
 }
 
 - (void)testPerformAfter2seconds {
-    FMFlow *flow = [FMFlow flowWithWait:1 completionBlock:^(NSError *error, NSArray *arguments) {
+    FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, NSArray *arguments) {
         [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
     }];
 
@@ -86,7 +86,7 @@
 }
 
 - (void)testExtend {
-    FMFlow *flow = [FMFlow flowWithWait:1 completionBlock:^(NSError *error, NSArray *arguments) {
+    FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, NSArray *arguments) {
         [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
     }];
 
@@ -105,7 +105,7 @@
 }
 
 - (void)testExtend2times {
-    FMFlow *flow = [FMFlow flowWithWait:1 completionBlock:^(NSError *error, NSArray *arguments) {
+    FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, NSArray *arguments) {
         [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
     }];
 

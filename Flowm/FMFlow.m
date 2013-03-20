@@ -9,15 +9,15 @@
 
 @interface FMFlow ()
 @property (nonatomic, copy) FlowCompletionBlock completionBlock;
-@property (atomic) NSUInteger wait;
+@property (atomic) NSUInteger waits;
 @end
 
 @implementation FMFlow {
 
 }
 
-+ (instancetype)flowWithWait:(NSUInteger)wait completionBlock:(FlowCompletionBlock)completionBlock {
-    return [[self alloc] initWithWait:wait completionBlock:completionBlock];
++ (instancetype)flowWithWaits:(NSUInteger)waits completionBlock:(FlowCompletionBlock)completionBlock {
+    return [[self alloc] initWithWait:waits completionBlock:completionBlock];
 }
 
 - (instancetype)initWithWait:(NSUInteger)wait completionBlock:(FlowCompletionBlock)completionBlock {
@@ -27,21 +27,21 @@
         return nil;
     }
 
-    self.wait = wait;
+    self.waits = wait;
     self.completionBlock = completionBlock;
 
     return self;
 }
 
 - (void)pass {
-    self.wait--;
-    if (self.wait == 0) {
+    self.waits--;
+    if (self.waits == 0) {
         self.completionBlock(nil, nil);
     }
 }
 
 - (void)extend:(NSUInteger)waits {
-    self.wait += waits;
+    self.waits += waits;
 }
 
 @end
