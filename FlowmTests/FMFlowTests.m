@@ -45,4 +45,21 @@
     [asyncTest waitForTimeout:5];
 }
 
+- (void)testWait2times {
+
+    FMFlow *flow = [FMFlow flowWithWait:2 completionBlock:^(NSError *error, NSArray *arguments) {
+        [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
+    }];
+
+    __weak FMFlow *that = flow;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that pass];
+    });
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that pass];
+    });
+
+    [asyncTest waitForTimeout:5];
+}
 @end
