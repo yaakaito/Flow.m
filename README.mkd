@@ -1,0 +1,124 @@
+# Flow.m
+
+Simple async processing with pass/miss. 
+
+ Inspired by flow.js. [Github](https://github.com/uupaa/flow.js) | [slideshare](http://www.slideshare.net/uupaa/flowjs)
+
+ ## Usage 
+
+ Setup with cocoapods:
+
+ ```ruby
+ pod 'Flow.m'
+ ```
+
+and Import:
+
+```objectie-c
+#import "FMFlow.h"
+```
+
+## Feature
+
+Calls completion blocks if `pass` counts reached `waits`.
+
+```objective-c
+// Wait 2 passes.
+FMFlow *flow = [FMFlow flowWithWaits:2 completionBlock:^(NSError *error, FMArguments *arguments) {
+    NSLog(@"Flow!");
+}];
+
+[flow pass];
+[flow pass]; // Flow!
+```
+
+### extend
+
+Can add `waits` later.
+
+```objective-c
+// Wait a pass.
+FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, FMArguments *arguments) {
+    NSLog(@"Flow!");
+}];
+
+[flow extend:1]; // Added 1 waits.
+
+[flow pass];
+[flow pass];  // Flow!
+```
+
+## arguments
+
+Completion blocks can receive arguments, its created by `passWithValue:` or `passWithValue:forKey:`.
+Can get argument by `key` or `index`.
+
+```objective-c
+FMFlow *flow = [FMFlow flowWithWaits:2 completionBlock:^(NSError *error, FMArguments *arguments) {
+
+    NSLog([arguments argumentAtIndex:0]); // HOGE
+    NSLog([arguments argumentAtIndex:1]); // FUGA
+    NSLog([arguments argumentForKey:@"fuga"]); // FUGA
+    [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
+}];
+
+[flow passWithValue:@"HOGE"];
+[flow passWithValue:@"FUGA" forKey:@"fuga"];
+```
+
+### miss & missable
+
+Use `miss`, if the process that may fails is included.
+`missable` appointed the number of times that process can fails.
+Calls completion blocks with `error` and past arguments if miss counts overed missable.
+
+missable:
+```objective-c
+FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, FMArguments *arguments) {
+    NSLog(@"Flow!");
+}];
+
+[flow missable:1];
+
+[flow miss];
+[flow pass]; // Flow!
+```
+
+missed:
+```objective-c
+// Wait 2 passes.
+FMFlow *flow = [FMFlow flowWithWaits:2 completionBlock:^(NSError *error, FMArguments *arguments) {
+    // error.domain : org.yaakaito.flow
+    // error.code   : kFMErrorCodeFailure
+    NSLog([arguments argumentAtIndex:0]); // HOGE 
+}];
+
+[flow missable:1];
+
+[flow miss];
+[flow passWithValue:@"HOGE"];
+[flow miss]; // miss! (calls completion blocks.)
+```
+
+### exit
+
+Can break flow with `userInfo`. Calls completion blocks with `error`.
+
+```objective-c
+FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, FMArguments *arguments) {
+    // error.domain : org.yaakaito.flow
+    // error.code   : kFMErrorCodeExit
+    NSLog([[error userInfo] objectForKey:@"msg"]); // Error message.
+
+}];
+
+[flow exit:@{ @"msg" : @"Error message."}];
+```
+
+### Junction 
+
+WIP.
+
+### Fork
+
+WIP.
