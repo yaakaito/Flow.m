@@ -227,4 +227,24 @@
     [asyncTest waitForTimeout:5];
 }
 
+- (void)testClearCompletionBlock {
+    FMFlow *flow = [FMFlow flowWithWaits:1 completionBlock:^(NSError *error, FMArguments *arguments) {
+        [asyncTest notify:kAsyncTestSupporterWaitStatusSuccess];
+    }];
+
+    __weak FMFlow *that = flow;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that pass];
+    });
+
+    [asyncTest waitForTimeout:5];
+
+    [asyncTest prepare];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [that pass];
+    });
+
+    STAssertThrows([asyncTest waitForTimeout:2], @"expected timeout");
+}
 @end

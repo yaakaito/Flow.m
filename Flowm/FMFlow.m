@@ -42,10 +42,17 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
     return self;
 }
 
+- (void)_complete:(NSError *)error {
+    if (self.completionBlock) {
+        self.completionBlock(error, self.arguments);
+        self.completionBlock = nil;
+    }
+}
+
 - (instancetype)pass {
     [self.passes increment];
     if ([self.passes isReached]) {
-        self.completionBlock(nil, self.arguments);
+        [self _complete:nil];
     }
     return self;
 }
@@ -76,7 +83,7 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 - (instancetype)miss {
     [self.misses increment];
     if ([self.misses isOvered]) {
-        self.completionBlock([self _failureError], self.arguments);
+        [self _complete:[self _failureError]];
     }
     return self;
 }
@@ -93,7 +100,7 @@ static NSString *kFlowDomain = @"org.yaakaito.flow";
 }
 
 - (instancetype)exit:(NSDictionary *)userInfo {
-    self.completionBlock([self _exitErrorWithUserInfo:userInfo], self.arguments);
+    [self _complete:[self _exitErrorWithUserInfo:userInfo]];
     return self;
 }
 
